@@ -1,35 +1,55 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+:root {
+  --bg: #f4f5fb;
+  --surface: #ffffff;
+  --text: #1e2235;
+  --muted: #6b7089;
+  --primary: #5b5bf0;
+  --primary-dark: #4646d6;
+  --danger: #e5484d;
+  --success: #2fa86b;
+  --border: #e3e5f0;
+  --radius: 14px;
+  --shadow: 0 6px 24px rgba(30, 34, 53, .08);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+h1, h2, h3 { line-height: 1.2; }
+.container { width: min(1100px, 100% - 2rem); margin-inline: auto; }
+.muted { color: var(--muted); }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.4rem; }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+/* Boutons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .65rem 1.1rem; border: 1px solid transparent; border-radius: 10px;
+  font: inherit; font-weight: 600; cursor: pointer; transition: background .15s, transform .1s, opacity .15s;
 }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn:not(:disabled):active { transform: scale(.97); }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:not(:disabled):hover { background: var(--primary-dark); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-ghost:not(:disabled):hover { background: var(--bg); }
+.btn-ghost--danger:not(:disabled):hover { background: color-mix(in srgb, var(--danger) 10%, transparent); color: var(--danger); border-color: var(--danger); }
+.btn-icon { padding: .5rem; }
+.btn-lg { padding: .9rem 1.8rem; font-size: 1.05rem; border-radius: 14px; }
+
+/* Champs */
+.field {
+  width: 100%; padding: .6rem .8rem; font: inherit; color: var(--text);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+}
+.field:focus { outline: 2px solid color-mix(in srgb, var(--primary) 35%, transparent); border-color: var(--primary); }
+.field--error { border-color: var(--danger); }
+textarea.field { resize: vertical; }
+
+/* Badges */
+.badge {
+  display: inline-block; padding: .2rem .65rem; border-radius: 999px; font-size: .78rem; font-weight: 700;
+  background: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--primary);
+}
+.badge--alt { background: color-mix(in srgb, var(--success) 14%, transparent); color: var(--success); }
